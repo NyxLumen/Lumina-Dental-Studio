@@ -1,159 +1,123 @@
 import React, { useState } from 'react';
 import { SPECIALTIES } from '../data/practiceData';
-import { Sparkles, ArrowRight, CheckCircle2, Shield, Cpu, Activity, Smile } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FadeIn, MotionButton } from './MotionUi';
 
-const ICON_MAP = {
-  cosmetic: Sparkles,
-  implants: Shield,
-  'smile-makeover': Smile,
-  'full-mouth': Activity,
-  digital: Cpu
-};
-
 export default function SpecialtiesBento({ theme, onSelectSpecialty, onOpenBooking }) {
-  const [activeTab, setActiveTab] = useState(SPECIALTIES[0].id);
-  const activeSpecialty = SPECIALTIES.find(s => s.id === activeTab) || SPECIALTIES[0];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = SPECIALTIES[activeIndex];
 
   return (
-    <section id="specialties" className="py-20 relative">
+    <section id="specialties" className="py-24 relative bg-[#F8F5F0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <FadeIn className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className={`inline-block px-3.5 py-1 ${theme.radius} ${theme.accentBadge} text-xs font-serif italic`}>
-            Clinical Excellence
+
+        {/* Section Label */}
+        <FadeIn className="flex items-center space-x-4 mb-16">
+          <div className="w-8 h-px bg-[#8C7A5B]" />
+          <span className="text-xs font-mono uppercase tracking-widest text-[#8C7A5B]">
+            Clinical Specialties
           </span>
-          <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold ${theme.headingFont} ${theme.bodyText}`}>
-            Advanced Specialties & Restorative Care
-          </h2>
-          <p className="text-base opacity-80 leading-relaxed">
-            From single-tooth ceramic bonding to complex full-mouth digital restorations, experience pain-free precision dentistry.
-          </p>
         </FadeIn>
 
-        {/* Bento Grid Layout */}
-        <div className="grid lg:grid-cols-12 gap-8">
-          
-          {/* Bento Left: Interactive Specialty Selector List */}
-          <div className="lg:col-span-5 space-y-3">
-            {SPECIALTIES.map((spec) => {
-              const IconComponent = ICON_MAP[spec.id] || Sparkles;
-              const isActive = activeTab === spec.id;
+        {/* Architectural headline — no subhead eyebrow box */}
+        <FadeIn delay={0.1} className="mb-16">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-serif text-[#111111] leading-tight max-w-2xl">
+            Advanced Care for Every Smile Need
+          </h2>
+        </FadeIn>
 
+        {/* Indexed Specialty List + Live Detail Panel */}
+        <div className="grid lg:grid-cols-12 gap-0 border border-[#E6DFD3] rounded-xl overflow-hidden">
+
+          {/* Left: Numbered Index List */}
+          <div className="lg:col-span-5 divide-y divide-[#E6DFD3] bg-white">
+            {SPECIALTIES.map((spec, idx) => {
+              const isActive = activeIndex === idx;
               return (
-                <motion.div
+                <motion.button
                   key={spec.id}
+                  onClick={() => setActiveIndex(idx)}
                   whileHover={{ x: 4 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setActiveTab(spec.id)}
-                  className={`relative p-5 ${theme.radius} cursor-pointer transition-all duration-300 flex items-start space-x-4 border ${
-                    isActive
-                      ? 'bg-white border-[#8C7A5B] shadow-md shadow-[#8C7A5B]/10'
-                      : 'bg-[#F4EFE6]/60 border-[#E5DFD3] hover:border-[#8C7A5B]/50'
+                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  className={`w-full text-left px-8 py-6 flex items-center justify-between group transition-colors ${
+                    isActive ? 'bg-[#111111] text-white' : 'hover:bg-[#F8F5F0]'
                   }`}
                 >
-                  {/* Framer Motion Active Indicator Pill */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeSpecialtyTab"
-                      className="absolute inset-0 rounded-xl border-2 border-[#8C7A5B] pointer-events-none"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                    />
-                  )}
-
-                  <div className={`p-3 rounded-xl ${isActive ? 'bg-[#8C7A5B] text-white' : 'bg-[#E5DDCB] text-[#7A694B]'} flex-shrink-0 transition-colors`}>
-                    <IconComponent className="w-5 h-5" />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <div className="flex items-center justify-between">
-                      <h3 className={`font-bold text-base ${theme.headingFont}`}>{spec.title}</h3>
-                      <span className="text-[10px] font-serif italic px-2 py-0.5 rounded bg-[#F0E9DC] text-[#7A694B]">
-                        {spec.badge}
-                      </span>
+                  <div className="flex items-center space-x-5">
+                    <span className={`text-xs font-mono tabular-nums ${isActive ? 'text-amber-200' : 'text-[#8C7A5B]'}`}>
+                      0{idx + 1}
+                    </span>
+                    <div>
+                      <h3 className={`text-base font-bold font-serif ${isActive ? 'text-white' : 'text-[#111111]'}`}>
+                        {spec.title}
+                      </h3>
+                      <p className={`text-xs mt-0.5 ${isActive ? 'text-white/60' : 'text-[#111111]/60'}`}>
+                        {spec.subtitle}
+                      </p>
                     </div>
-                    <p className="text-xs opacity-75 mt-1 line-clamp-1">{spec.subtitle}</p>
                   </div>
-                </motion.div>
+                  <ArrowRight className={`w-4 h-4 flex-shrink-0 transition-all ${isActive ? 'text-amber-200' : 'text-[#E6DFD3] group-hover:text-[#8C7A5B]'}`} />
+                </motion.button>
               );
             })}
           </div>
 
-          {/* Bento Right: Featured Detail View Component */}
-          <div className="lg:col-span-7">
-            <div className={`p-8 lg:p-10 ${theme.radius} bg-white border border-[#E5DFD3] shadow-lg h-full flex flex-col justify-between text-left space-y-8 relative overflow-hidden`}>
-              
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeSpecialty.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.3 }}
-                  className="space-y-6"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className={`px-3 py-1 ${theme.radius} ${theme.accentBadge} text-xs font-serif italic`}>
-                      {activeSpecialty.badge} Focus
-                    </span>
-                    <span className="text-xs font-mono opacity-60">Indirapuram Studio</span>
-                  </div>
-
-                  <div>
-                    <h3 className={`text-2xl sm:text-3xl font-extrabold ${theme.headingFont} ${theme.bodyText}`}>
-                      {activeSpecialty.title}
-                    </h3>
-                    <p className="text-sm font-serif italic text-[#8C7A5B] mt-1">
-                      {activeSpecialty.subtitle}
-                    </p>
-                  </div>
-
-                  <p className="text-base opacity-85 leading-relaxed">
-                    {activeSpecialty.desc}
+          {/* Right: Detail View — no floating card, direct editorial typography */}
+          <div className="lg:col-span-7 bg-[#F4EFE6] flex flex-col">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+                className="p-10 lg:p-14 space-y-8 flex-1 flex flex-col"
+              >
+                <div className="space-y-4 flex-1">
+                  <span className="text-xs font-mono uppercase tracking-widest text-[#8C7A5B]">
+                    {active.badge} Procedure
+                  </span>
+                  <h3 className="text-3xl sm:text-4xl font-extrabold font-serif text-[#111111] leading-tight">
+                    {active.title}
+                  </h3>
+                  <p className="text-base text-[#111111]/80 leading-relaxed">
+                    {active.desc}
                   </p>
 
-                  {/* Procedure Features Grid */}
-                  <div>
-                    <h4 className="text-xs font-serif uppercase tracking-wider font-bold mb-4 opacity-70">
-                      Clinical Protocols & Deliverables
-                    </h4>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {activeSpecialty.features.map((feat, idx) => (
-                        <div key={idx} className="flex items-center space-x-2.5 text-sm font-medium">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                          <span>{feat}</span>
+                  {/* Features — clean bulleted list, no icon cards */}
+                  <div className="pt-4 space-y-2">
+                    <p className="text-xs font-mono uppercase tracking-widest text-[#111111]/50 mb-3">Included In Treatment</p>
+                    <div className="grid sm:grid-cols-2 gap-2">
+                      {active.features.map((f, i) => (
+                        <div key={i} className="flex items-center space-x-2.5 text-sm text-[#111111]/80">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-700 flex-shrink-0" />
+                          <span>{f}</span>
                         </div>
                       ))}
                     </div>
                   </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Action Drawer */}
-              <div className="pt-6 border-t border-[#E6DFD3] flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <p className="text-xs font-mono opacity-60">Consultation Duration</p>
-                  <p className="text-sm font-bold font-serif">30 Mins Detailed 3D Evaluation</p>
                 </div>
 
-                <MotionButton
-                  onClick={() => {
-                    onSelectSpecialty(activeSpecialty.title);
-                    onOpenBooking();
-                  }}
-                  className={`px-6 py-3 ${theme.radius} ${theme.primaryBtn} text-sm font-bold flex items-center space-x-2 shadow-md shadow-[#8C7A5B]/20`}
-                >
-                  <span>Book {activeSpecialty.title}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </MotionButton>
-              </div>
-
-            </div>
+                {/* Sticky Bottom Bar */}
+                <div className="pt-6 border-t border-[#E0D8C8] flex items-center justify-between gap-4 flex-wrap">
+                  <div>
+                    <p className="text-[10px] font-mono uppercase tracking-widest text-[#111111]/50">Consultation</p>
+                    <p className="text-sm font-serif font-bold text-[#111111]">30-Min 3D Evaluation</p>
+                  </div>
+                  <MotionButton
+                    onClick={() => { onSelectSpecialty(active.title); onOpenBooking(); }}
+                    className="px-7 py-3.5 rounded-lg bg-[#111111] hover:bg-[#2A2A2A] text-white font-serif text-xs font-bold uppercase tracking-widest flex items-center space-x-2 shadow-md"
+                  >
+                    <span>Book {active.title}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </MotionButton>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
         </div>
-
       </div>
     </section>
   );

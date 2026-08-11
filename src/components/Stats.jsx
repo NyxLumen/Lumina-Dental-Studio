@@ -1,30 +1,26 @@
 import React from 'react';
 import { STATS } from '../data/practiceData';
-import { StaggerContainer, StaggerItem, MotionCard } from './MotionUi';
+import { FadeIn } from './MotionUi';
 
 export default function Stats({ theme }) {
   return (
-    <section className="py-12 relative border-y border-[#E6DFD3]/80 bg-[#F4EFE6]/40">
+    <section className="py-16 relative border-y border-[#E6DFD3] bg-[#F8F5F0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <FadeIn className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#E6DFD3] text-left">
           {STATS.map((stat, idx) => (
-            <StaggerItem key={idx}>
-              <MotionCard className={`p-6 ${theme.radius} bg-white border border-[#E5DFD3] shadow-xs hover:border-[#8C7A5B] flex flex-col justify-between h-full`}>
-                <div>
-                  <span className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight ${theme.headingFont} text-[#8C7A5B]`}>
-                    {stat.value}
-                  </span>
-                  <h3 className={`text-base font-bold mt-2 ${theme.headingFont} ${theme.bodyText}`}>
-                    {stat.label}
-                  </h3>
-                </div>
-                <p className="text-xs opacity-75 mt-2 leading-relaxed">
-                  {stat.desc}
-                </p>
-              </MotionCard>
-            </StaggerItem>
+            <div key={idx} className="p-6 sm:p-8 space-y-2">
+              <span className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-serif text-[#111111] block">
+                {stat.value}
+              </span>
+              <h3 className="text-sm font-bold font-serif text-[#8C7A5B] tracking-wide">
+                {stat.label}
+              </h3>
+              <p className="text-xs text-[#111111]/70 leading-relaxed">
+                {stat.desc}
+              </p>
+            </div>
           ))}
-        </StaggerContainer>
+        </FadeIn>
       </div>
     </section>
   );
