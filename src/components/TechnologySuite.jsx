@@ -38,6 +38,8 @@ export default function TechnologySuite({ theme }) {
                       <img
                         src={tech.image}
                         alt={tech.title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute top-3 left-3 p-2 rounded-lg bg-[#211E1B]/85 text-amber-200 border border-white/20 backdrop-blur-md">

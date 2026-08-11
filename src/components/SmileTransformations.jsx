@@ -61,6 +61,8 @@ export default function SmileTransformations({ theme, onOpenBooking }) {
                 <img
                   src="/images/smile_transformation.png"
                   alt="Restored Natural Smile After Veneers"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
                 <span className="absolute bottom-4 right-4 px-3 py-1 rounded bg-[#8C7A5B] text-white text-xs font-serif italic shadow-md">
@@ -76,7 +78,9 @@ export default function SmileTransformations({ theme, onOpenBooking }) {
                 <img
                   src="/images/smile_transformation.png"
                   alt="Before Cosmetic Dentistry Treatment"
-                  className="w-[1000px] max-w-none h-full object-cover grayscale brightness-90 contrast-125"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover grayscale brightness-90 contrast-125 max-w-none w-[1000px]"
                 />
                 <span className="absolute bottom-4 left-4 px-3 py-1 rounded bg-[#211E1B] text-white text-xs font-serif italic shadow-md">
                   BEFORE: Initial Wear

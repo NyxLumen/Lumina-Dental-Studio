@@ -181,8 +181,9 @@ export default function BookingModal({ theme, isOpen, onClose, preselectedServic
                     className="space-y-5"
                   >
                     <div>
-                      <label className="block text-xs font-serif uppercase tracking-wider font-bold mb-2">Preferred Date</label>
+                      <label htmlFor="booking-date" className="block text-xs font-serif uppercase tracking-wider font-bold mb-2">Preferred Date</label>
                       <input
+                        id="booking-date"
                         type="date"
                         value={form.date}
                         onChange={(e) => setForm({ ...form, date: e.target.value })}
@@ -221,10 +222,11 @@ export default function BookingModal({ theme, isOpen, onClose, preselectedServic
                     className="space-y-4"
                   >
                     <div>
-                      <label className="block text-xs font-serif uppercase tracking-wider font-bold mb-1.5">Full Name *</label>
+                      <label htmlFor="booking-name" className="block text-xs font-serif uppercase tracking-wider font-bold mb-1.5">Full Name *</label>
                       <div className="relative">
                         <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 opacity-50" />
                         <input
+                          id="booking-name"
                           type="text"
                           placeholder="Your full name"
                           value={form.name}
@@ -235,10 +237,11 @@ export default function BookingModal({ theme, isOpen, onClose, preselectedServic
                     </div>
 
                     <div>
-                      <label className="block text-xs font-serif uppercase tracking-wider font-bold mb-1.5">Phone / WhatsApp *</label>
+                      <label htmlFor="booking-phone" className="block text-xs font-serif uppercase tracking-wider font-bold mb-1.5">Phone / WhatsApp *</label>
                       <div className="relative">
                         <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 opacity-50" />
                         <input
+                          id="booking-phone"
                           type="tel"
                           placeholder="+91 98712 XXXXX"
                           value={form.phone}
@@ -249,10 +252,11 @@ export default function BookingModal({ theme, isOpen, onClose, preselectedServic
                     </div>
 
                     <div>
-                      <label className="block text-xs font-serif uppercase tracking-wider font-bold mb-1.5">Email (Optional)</label>
+                      <label htmlFor="booking-email" className="block text-xs font-serif uppercase tracking-wider font-bold mb-1.5">Email (Optional)</label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 opacity-50" />
                         <input
+                          id="booking-email"
                           type="email"
                           placeholder="your@email.com"
                           value={form.email}
@@ -263,8 +267,9 @@ export default function BookingModal({ theme, isOpen, onClose, preselectedServic
                     </div>
 
                     <div>
-                      <label className="block text-xs font-serif uppercase tracking-wider font-bold mb-1.5">Notes for Dr. Mehta (Optional)</label>
+                      <label htmlFor="booking-notes" className="block text-xs font-serif uppercase tracking-wider font-bold mb-1.5">Notes for Dr. Mehta (Optional)</label>
                       <textarea
+                        id="booking-notes"
                         placeholder="Describe your concern or desired treatment..."
                         value={form.notes}
                         onChange={(e) => setForm({ ...form, notes: e.target.value })}

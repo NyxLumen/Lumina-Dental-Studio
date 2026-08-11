@@ -1,8 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
-// Scroll reveal component with smooth spring transition
+// Scroll reveal component with smooth spring transition & reduced-motion fallback
 export function FadeIn({ children, delay = 0, direction = 'up', className = '', ...props }) {
+  const shouldReduceMotion = useReducedMotion();
+
   const directions = {
     up: { y: 30, x: 0 },
     down: { y: -30, x: 0 },
@@ -10,6 +12,14 @@ export function FadeIn({ children, delay = 0, direction = 'up', className = '', 
     right: { x: -30, y: 0 },
     none: { x: 0, y: 0 }
   };
+
+  if (shouldReduceMotion) {
+    return (
+      <div className={className} {...props}>
+        {children}
+      </div>
+    );
+  }
 
   return (
     <motion.div
@@ -31,6 +41,16 @@ export function FadeIn({ children, delay = 0, direction = 'up', className = '', 
 
 // Stagger parent container
 export function StaggerContainer({ children, delay = 0, className = '', ...props }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return (
+      <div className={className} {...props}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       initial="hidden"
@@ -55,6 +75,16 @@ export function StaggerContainer({ children, delay = 0, className = '', ...props
 
 // Stagger child item
 export function StaggerItem({ children, className = '', ...props }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return (
+      <div className={className} {...props}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       variants={{
@@ -78,6 +108,16 @@ export function StaggerItem({ children, className = '', ...props }) {
 
 // Card wrapper with tactile spring hover feedback
 export function MotionCard({ children, className = '', ...props }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return (
+      <div className={className} {...props}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       whileHover={{ y: -4, scale: 1.008 }}
@@ -93,6 +133,16 @@ export function MotionCard({ children, className = '', ...props }) {
 
 // Magnetic Button with spring physics
 export function MotionButton({ children, className = '', onClick, ...props }) {
+  const shouldReduceMotion = useReducedMotion();
+
+  if (shouldReduceMotion) {
+    return (
+      <button onClick={onClick} className={className} {...props}>
+        {children}
+      </button>
+    );
+  }
+
   return (
     <motion.button
       whileHover={{ scale: 1.03 }}

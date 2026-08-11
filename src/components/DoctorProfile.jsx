@@ -23,6 +23,8 @@ export default function DoctorProfile({ theme, onOpenBooking }) {
                 <img
                   src={DOCTOR_INFO.image}
                   alt={DOCTOR_INFO.name}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-[460px] object-cover object-top"
                 />
                 
