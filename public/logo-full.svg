@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 240" fill="none">
+  <!-- Background transparent -->
+
+  <!-- === TOOTH ICON MARK (left, vertically centered) === -->
+  <path
+    d="M72 28
+       C58 28 48 38 44 52
+       C40 38 30 30 20 34
+       C6 40 2 60 6 78
+       C8 88 12 100 18 114
+       C24 128 30 148 34 168
+       C36 178 40 194 46 202
+       C50 208 56 212 62 208
+       C68 204 70 194 72 184
+       C74 172 75 160 78 160
+       C81 160 82 172 84 184
+       C86 194 88 204 94 208
+       C100 212 106 208 110 202
+       C116 194 120 178 122 168
+       C126 148 132 128 138 114
+       C144 100 148 88 150 78
+       C154 60 150 40 136 34
+       C126 30 116 38 112 52
+       C108 38 96 28 80 28
+       Z"
+    fill="#111111"
+  />
+  <!-- Amber crown accent -->
+  <ellipse cx="78" cy="48" rx="7" ry="5" fill="#C9A96E"/>
+  <!-- Subtle root line -->
+  <line x1="78" y1="156" x2="78" y2="130" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.2"/>
+
+  <!-- === WORDMARK === -->
+  <!-- LUMINA — large serif tracking -->
+  <text
+    x="190"
+    y="108"
+    font-family="'Cormorant Garamond', 'Georgia', serif"
+    font-size="72"
+    font-weight="700"
+    letter-spacing="10"
+    fill="#111111"
+    text-anchor="start"
+  >LUMINA</text>
+
+  <!-- DENTAL STUDIO — fine mono caps -->
+  <text
+    x="193"
+    y="138"
+    font-family="'Inter', 'SF Mono', monospace"
+    font-size="14"
+    font-weight="400"
+    letter-spacing="8"
+    fill="#8C7A5B"
+    text-anchor="start"
+  >DENTAL  STUDIO</text>
+
+  <!-- Hairline separator -->
+  <line x1="192" y1="122" x2="540" y2="122" stroke="#E6DFD3" stroke-width="0.8"/>
+</svg>

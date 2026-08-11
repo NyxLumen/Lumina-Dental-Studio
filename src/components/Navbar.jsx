@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CLINIC_INFO } from '../data/practiceData';
-import { Phone, Calendar, Sparkles, Menu, X } from 'lucide-react';
+import { Phone, Calendar, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar({ theme, onOpenBooking, onSelectSection }) {
@@ -38,15 +38,15 @@ export default function Navbar({ theme, onOpenBooking, onSelectSection }) {
             className="flex items-center space-x-3 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <div className="w-10 h-10 rounded-lg bg-[#111111] text-white flex items-center justify-center shadow-sm">
-              <Sparkles className="w-5 h-5 text-amber-200" />
+            <div className="w-10 h-10 rounded-lg bg-[#111111] overflow-hidden flex items-center justify-center p-1.5 shadow-sm flex-shrink-0">
+              <img src="/favicon.svg" alt="Lumina Dental Studio icon" className="w-full h-full" />
             </div>
             <div>
-              <div className={`text-2xl font-bold tracking-tight ${theme.headingFont} text-[#111111]`}>
+              <div className="text-2xl font-bold tracking-tight font-serif text-[#111111]">
                 LUMINA <span className="text-[#8C7A5B]">DENTAL</span>
               </div>
-              <p className="text-[10px] font-mono opacity-60 tracking-widest uppercase">
-                {CLINIC_INFO.tagline}
+              <p className="text-[10px] font-mono opacity-50 tracking-[0.22em] uppercase">
+                STUDIO · INDIRAPURAM
               </p>
             </div>
           </motion.div>
@@ -91,9 +91,10 @@ export default function Navbar({ theme, onOpenBooking, onSelectSection }) {
           <div className="flex lg:hidden items-center space-x-2">
             <button
               onClick={onOpenBooking}
-              className="px-4 py-2 rounded-lg bg-[#111111] text-white font-serif text-xs font-bold uppercase tracking-wider shadow-sm"
+              className="px-4 py-2 rounded-lg bg-[#111111] text-white font-serif text-xs font-bold uppercase tracking-wider shadow-sm flex items-center space-x-1.5"
             >
-              Book
+              <Calendar className="w-3.5 h-3.5 text-amber-200" />
+              <span>Book</span>
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- Tooth Mark Icon -->
+  <!-- Outer tooth silhouette -->
+  <path
+    d="M120 28
+       C104 28 92 38 88 52
+       C84 38 72 30 60 34
+       C44 40 40 60 44 78
+       C46 88 50 100 56 114
+       C62 128 68 148 72 168
+       C74 178 78 194 84 202
+       C88 208 94 212 100 208
+       C106 204 108 194 110 184
+       C112 172 114 160 120 160
+       C126 160 128 172 130 184
+       C132 194 134 204 140 208
+       C146 212 152 208 156 202
+       C162 194 166 178 168 168
+       C172 148 178 128 184 114
+       C190 100 194 88 196 78
+       C200 60 196 40 180 34
+       C168 30 156 38 152 52
+       C148 38 136 28 120 28Z"
+    fill="#111111"
+    opacity="0.92"
+  />
+  <!-- Amber accent highlight — small gem at crown -->
+  <ellipse cx="120" cy="52" rx="6" ry="4" fill="#C9A96E" opacity="0.9"/>
+  <!-- Inner root divider subtle detail -->
+  <path
+    d="M120 158 L120 130"
+    stroke="white"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    opacity="0.25"
+  />
+</svg>

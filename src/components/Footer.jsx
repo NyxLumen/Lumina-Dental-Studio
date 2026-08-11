@@ -1,6 +1,6 @@
 import React from 'react';
 import { CLINIC_INFO } from '../data/practiceData';
-import { Sparkles, MapPin, Phone, Mail, Clock, Heart } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Heart } from 'lucide-react';
 
 export default function Footer({ theme }) {
   const year = new Date().getFullYear();
@@ -24,8 +24,8 @@ export default function Footer({ theme }) {
           {/* Brand + ethos */}
           <div className="md:col-span-5 space-y-5">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-amber-200" />
+              <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center p-1.5">
+                <img src="/favicon.svg" alt="Lumina Dental Studio" className="w-full h-full" />
               </div>
               <span className="text-2xl font-bold font-serif tracking-tight">
                 LUMINA <span className="text-[#8C7A5B]">DENTAL</span>
