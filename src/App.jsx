@@ -1,122 +1,128 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useState, useRef, useEffect } from 'react';
+import { THEMES } from './data/themes';
+import StudioToolbar from './components/StudioToolbar';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Stats from './components/Stats';
+import DoctorProfile from './components/DoctorProfile';
+import SpecialtiesBento from './components/SpecialtiesBento';
+import SmileTransformations from './components/SmileTransformations';
+import TechnologySuite from './components/TechnologySuite';
+import Testimonials from './components/Testimonials';
+import ClinicDetails from './components/ClinicDetails';
+import GoogleMapSection from './components/GoogleMapSection';
+import BookingModal from './components/BookingModal';
+import Footer from './components/Footer';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [activeThemeId, setActiveThemeId] = useState('cat1-impeccable');
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [preselectedService, setPreselectedService] = useState('');
+
+  const theme = THEMES[activeThemeId] || THEMES['cat1-impeccable'];
+
+  // Section refs for smooth scrolling
+  const sectionRefs = {
+    specialties: useRef(null),
+    doctor: useRef(null),
+    transformations: useRef(null),
+    technology: useRef(null),
+    location: useRef(null)
+  };
+
+  const scrollToSection = (sectionId) => {
+    const ref = sectionRefs[sectionId];
+    if (ref?.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleOpenBooking = () => {
+    setBookingOpen(true);
+  };
+
+  const handleSelectSpecialty = (service) => {
+    setPreselectedService(service);
+  };
+
+  // Scroll to top on theme change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activeThemeId]);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="min-h-screen theme-transition">
+      {/* Design Studio Toolbar (always visible, fixed top) */}
+      <StudioToolbar
+        activeThemeId={activeThemeId}
+        onThemeChange={setActiveThemeId}
+      />
 
-      <div className="ticks"></div>
+      {/* Themed Website Body */}
+      <div className={`${theme.bodyBg} ${theme.bodyText} ${theme.bodyFont} min-h-screen transition-colors duration-500`}>
+        
+        <Navbar
+          theme={theme}
+          onOpenBooking={handleOpenBooking}
+          onSelectSection={scrollToSection}
+        />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <main>
+          <Hero
+            theme={theme}
+            onOpenBooking={handleOpenBooking}
+          />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+          <Stats theme={theme} />
+
+          <div ref={sectionRefs.doctor}>
+            <DoctorProfile
+              theme={theme}
+              onOpenBooking={handleOpenBooking}
+            />
+          </div>
+
+          <div ref={sectionRefs.specialties}>
+            <SpecialtiesBento
+              theme={theme}
+              onSelectSpecialty={handleSelectSpecialty}
+              onOpenBooking={handleOpenBooking}
+            />
+          </div>
+
+          <div ref={sectionRefs.transformations}>
+            <SmileTransformations
+              theme={theme}
+              onOpenBooking={handleOpenBooking}
+            />
+          </div>
+
+          <div ref={sectionRefs.technology}>
+            <TechnologySuite theme={theme} />
+          </div>
+
+          <Testimonials theme={theme} />
+
+          <div ref={sectionRefs.location}>
+            <ClinicDetails
+              theme={theme}
+              onOpenBooking={handleOpenBooking}
+            />
+          </div>
+
+          <GoogleMapSection theme={theme} />
+        </main>
+
+        <Footer theme={theme} />
+      </div>
+
+      {/* Booking Modal Overlay */}
+      <BookingModal
+        theme={theme}
+        isOpen={bookingOpen}
+        onClose={() => { setBookingOpen(false); setPreselectedService(''); }}
+        preselectedService={preselectedService}
+      />
+    </div>
+  );
 }
-
-export default App
