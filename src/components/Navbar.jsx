@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CLINIC_INFO } from '../data/practiceData';
-import { Phone, Calendar, Sparkles, MapPin, Menu, X } from 'lucide-react';
+import { Phone, Calendar, Sparkles, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar({ theme, onOpenBooking, onSelectSection }) {
@@ -15,6 +15,12 @@ export default function Navbar({ theme, onOpenBooking, onSelectSection }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navItems = [
+    { id: 'specialties', label: 'Specialties' },
+    { id: 'transformations', label: 'Transformations' },
+    { id: 'location', label: 'Location & Map' }
+  ];
+
   return (
     <header className={`sticky top-0 z-40 w-full transition-all duration-500 ${
       scrolled
@@ -26,8 +32,8 @@ export default function Navbar({ theme, onOpenBooking, onSelectSection }) {
           
           {/* Brand Identity */}
           <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.015 }}
+            whileTap={{ scale: 0.985 }}
             className="flex items-center space-x-3 cursor-pointer"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
@@ -44,47 +50,38 @@ export default function Navbar({ theme, onOpenBooking, onSelectSection }) {
             </div>
           </motion.div>
 
-          {/* Nav Links (Desktop) */}
-          <nav className="hidden lg:flex items-center space-x-8 text-sm font-medium text-[#211E1B]/80">
-            {['specialties', 'doctor', 'transformations', 'technology', 'location'].map((sec) => {
-              const labels = {
-                specialties: 'Specialties',
-                doctor: 'Dr. Arjun Mehta',
-                transformations: 'Transformations',
-                technology: '3D Technology',
-                location: 'Location & Map'
-              };
-
-              return (
-                <button
-                  key={sec}
-                  onClick={() => onSelectSection(sec)}
-                  className="relative group py-1 transition-colors hover:text-[#8C7A5B]"
-                >
-                  <span>{labels[sec]}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#8C7A5B] group-hover:w-full transition-all duration-300 rounded-full" />
-                </button>
-              );
-            })}
+          {/* Nav Links (Desktop) - Clean, Spaced-Out Editorial Nav */}
+          <nav className="hidden lg:flex items-center space-x-12 text-sm font-serif tracking-wide text-[#211E1B]/90">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => onSelectSection(item.id)}
+                className="relative group py-1 font-semibold transition-colors hover:text-[#8C7A5B]"
+              >
+                <span>{item.label}</span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#8C7A5B] group-hover:w-full transition-all duration-300 rounded-full" />
+              </button>
+            ))}
           </nav>
 
           {/* Quick Actions */}
-          <div className="hidden sm:flex items-center space-x-4">
+          <div className="hidden sm:flex items-center space-x-5">
             <a
               href={`tel:${CLINIC_INFO.phone}`}
-              className="px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center space-x-2 text-[#211E1B]/80 hover:text-[#8C7A5B] hover:bg-[#F0EAE1] transition-all"
+              className="px-3.5 py-2 rounded-xl text-xs font-serif italic flex items-center space-x-2 text-[#211E1B]/80 hover:text-[#8C7A5B] hover:bg-[#F0EAE1] transition-all"
             >
-              <Phone className="w-3.5 h-3.5 text-emerald-600" />
+              <Phone className="w-3.5 h-3.5 text-emerald-700" />
               <span>{CLINIC_INFO.phone}</span>
             </a>
 
+            {/* Taste-Skill Premium Editorial CTA Button */}
             <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
+              whileHover={{ scale: 1.03, y: -1 }}
+              whileTap={{ scale: 0.97 }}
               onClick={onOpenBooking}
-              className={`px-6 py-2.5 ${theme.radius} ${theme.primaryBtn} text-sm font-semibold flex items-center space-x-2 shadow-md shadow-[#8C7A5B]/15`}
+              className="px-7 py-3 rounded-xl bg-[#8C7A5B] hover:bg-[#726348] text-white font-serif font-bold text-xs uppercase tracking-wider flex items-center space-x-2.5 shadow-md hover:shadow-lg shadow-[#8C7A5B]/20 whitespace-nowrap active:scale-[0.98] transition-all border border-[#7A694B]/30"
             >
-              <Calendar className="w-4 h-4" />
+              <Calendar className="w-4 h-4 text-amber-200" />
               <span>Book Appointment</span>
             </motion.button>
           </div>
@@ -94,7 +91,7 @@ export default function Navbar({ theme, onOpenBooking, onSelectSection }) {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={onOpenBooking}
-              className={`px-3.5 py-1.5 ${theme.radius} ${theme.primaryBtn} text-xs font-semibold flex items-center space-x-1`}
+              className="px-4 py-2 rounded-xl bg-[#8C7A5B] text-white font-serif text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 shadow-sm"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>Book</span>
@@ -118,36 +115,15 @@ export default function Navbar({ theme, onOpenBooking, onSelectSection }) {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               className="lg:hidden overflow-hidden border-t border-[#E6DFD3] py-4 space-y-3"
             >
-              <button
-                onClick={() => { onSelectSection('specialties'); setMobileMenuOpen(false); }}
-                className="block w-full text-left px-3 py-2 text-sm font-serif font-semibold text-[#211E1B] hover:text-[#8C7A5B]"
-              >
-                Clinical Specialties
-              </button>
-              <button
-                onClick={() => { onSelectSection('doctor'); setMobileMenuOpen(false); }}
-                className="block w-full text-left px-3 py-2 text-sm font-serif font-semibold text-[#211E1B] hover:text-[#8C7A5B]"
-              >
-                About Dr. Arjun Mehta
-              </button>
-              <button
-                onClick={() => { onSelectSection('transformations'); setMobileMenuOpen(false); }}
-                className="block w-full text-left px-3 py-2 text-sm font-serif font-semibold text-[#211E1B] hover:text-[#8C7A5B]"
-              >
-                Smile Transformations
-              </button>
-              <button
-                onClick={() => { onSelectSection('technology'); setMobileMenuOpen(false); }}
-                className="block w-full text-left px-3 py-2 text-sm font-serif font-semibold text-[#211E1B] hover:text-[#8C7A5B]"
-              >
-                3D Digital Technology
-              </button>
-              <button
-                onClick={() => { onSelectSection('location'); setMobileMenuOpen(false); }}
-                className="block w-full text-left px-3 py-2 text-sm font-serif font-semibold text-[#211E1B] hover:text-[#8C7A5B]"
-              >
-                Location & Google Map
-              </button>
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => { onSelectSection(item.id); setMobileMenuOpen(false); }}
+                  className="block w-full text-left px-3 py-2 text-base font-serif font-semibold text-[#211E1B] hover:text-[#8C7A5B]"
+                >
+                  {item.label}
+                </button>
+              ))}
 
               <div className="pt-3 border-t border-[#E6DFD3] flex flex-col space-y-2">
                 <a
@@ -159,7 +135,7 @@ export default function Navbar({ theme, onOpenBooking, onSelectSection }) {
                 </a>
                 <button
                   onClick={() => { onOpenBooking(); setMobileMenuOpen(false); }}
-                  className={`w-full py-3 ${theme.radius} ${theme.primaryBtn} text-sm font-bold flex items-center justify-center space-x-2`}
+                  className="w-full py-3.5 rounded-xl bg-[#8C7A5B] hover:bg-[#726348] text-white font-serif font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>Book Consultation</span>
