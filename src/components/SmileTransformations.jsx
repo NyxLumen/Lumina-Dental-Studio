@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Sparkles, Star, Calendar } from 'lucide-react';
+import { Star, Calendar } from 'lucide-react';
+import { FadeIn, MotionButton } from './MotionUi';
 
 export default function SmileTransformations({ theme, onOpenBooking }) {
   const [sliderPos, setSliderPos] = useState(50);
@@ -11,8 +12,8 @@ export default function SmileTransformations({ theme, onOpenBooking }) {
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           
           {/* Text & Case Study Info */}
-          <div className="lg:col-span-6 space-y-6 text-left">
-            <span className={`inline-block px-3 py-1 ${theme.radius} ${theme.accentBadge} text-xs font-mono uppercase tracking-widest`}>
+          <FadeIn className="lg:col-span-6 space-y-6 text-left">
+            <span className={`inline-block px-3.5 py-1 ${theme.radius} ${theme.accentBadge} text-xs font-serif italic`}>
               Real Patient Transformations
             </span>
             
@@ -24,50 +25,50 @@ export default function SmileTransformations({ theme, onOpenBooking }) {
               We preserve healthy tooth structure while restoring shade, symmetry, and bite functionality. Slide to experience how custom digital smile design turns vision into reality.
             </p>
 
-            <div className={`p-6 ${theme.radius} ${theme.cardAltBg} border space-y-4`}>
-              <div className="flex items-center space-x-1 text-amber-400">
+            <div className="p-6 rounded-xl bg-white border border-[#E5DFD3] shadow-sm space-y-4">
+              <div className="flex items-center space-x-1 text-amber-500">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-amber-400" />
                 ))}
-                <span className="text-xs font-bold ml-2 text-slate-400">Verified Patient Case #482</span>
+                <span className="text-xs font-serif italic ml-2 text-slate-500">Verified Patient Case #482</span>
               </div>
-              <p className="text-sm font-medium italic opacity-90">
+              <p className="text-sm font-medium italic opacity-90 leading-relaxed">
                 “My smile looks so natural that my colleagues didn’t even realize I had porcelain veneers — they just noticed I was smiling all day long!”
               </p>
-              <div className="flex items-center justify-between text-xs opacity-75 font-mono">
+              <div className="flex items-center justify-between text-xs opacity-75 font-mono pt-2 border-t border-[#E6DFD3]">
                 <span>Treatment: 8 Minimal-Prep Veneers</span>
                 <span>Duration: 2 Visits (7 Days)</span>
               </div>
             </div>
 
             <div>
-              <button
+              <MotionButton
                 onClick={onOpenBooking}
-                className={`px-8 py-4 ${theme.radius} ${theme.primaryBtn} text-base font-bold inline-flex items-center space-x-2`}
+                className={`px-8 py-4 ${theme.radius} ${theme.primaryBtn} text-base font-bold inline-flex items-center space-x-2 shadow-lg shadow-[#8C7A5B]/20`}
               >
                 <Calendar className="w-5 h-5" />
                 <span>Schedule Your Smile Consultation</span>
-              </button>
+              </MotionButton>
             </div>
-          </div>
+          </FadeIn>
 
           {/* Interactive Before/After Visual Slider */}
-          <div className="lg:col-span-6 relative">
-            <div className={`relative ${theme.radius} overflow-hidden border ${theme.cardBg} select-none`}>
+          <FadeIn delay={0.2} direction="left" className="lg:col-span-6 relative">
+            <div className={`relative ${theme.radius} overflow-hidden border border-[#E5DFD3] bg-white shadow-xl select-none`}>
               
-              {/* After Image (Full width background layer) */}
+              {/* After Image */}
               <div className="relative w-full h-[450px]">
                 <img
                   src="/images/smile_transformation.png"
                   alt="Restored Natural Smile After Veneers"
                   className="w-full h-full object-cover"
                 />
-                <span className="absolute bottom-4 right-4 px-3 py-1 rounded bg-teal-600 text-white text-xs font-bold uppercase tracking-wider shadow-md">
+                <span className="absolute bottom-4 right-4 px-3 py-1 rounded bg-[#8C7A5B] text-white text-xs font-serif italic shadow-md">
                   AFTER: Lumina Smile
                 </span>
               </div>
 
-              {/* Before Overlay Image (Clipped by slider position) */}
+              {/* Before Overlay Image */}
               <div
                 className="absolute top-0 left-0 bottom-0 overflow-hidden"
                 style={{ width: `${sliderPos}%` }}
@@ -77,7 +78,7 @@ export default function SmileTransformations({ theme, onOpenBooking }) {
                   alt="Before Cosmetic Dentistry Treatment"
                   className="w-[1000px] max-w-none h-full object-cover grayscale brightness-90 contrast-125"
                 />
-                <span className="absolute bottom-4 left-4 px-3 py-1 rounded bg-slate-900 text-slate-200 text-xs font-bold uppercase tracking-wider shadow-md">
+                <span className="absolute bottom-4 left-4 px-3 py-1 rounded bg-[#211E1B] text-white text-xs font-serif italic shadow-md">
                   BEFORE: Initial Wear
                 </span>
               </div>
@@ -97,7 +98,7 @@ export default function SmileTransformations({ theme, onOpenBooking }) {
                 className="absolute top-0 bottom-0 w-1 bg-white shadow-2xl z-10 pointer-events-none"
                 style={{ left: `${sliderPos}%` }}
               >
-                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white text-slate-900 flex items-center justify-center font-bold text-xs shadow-xl border-2 border-teal-500">
+                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white text-[#8C7A5B] flex items-center justify-center font-bold text-xs shadow-xl border-2 border-[#8C7A5B]">
                   ↔
                 </div>
               </div>
@@ -107,7 +108,7 @@ export default function SmileTransformations({ theme, onOpenBooking }) {
             <p className="text-center text-xs opacity-60 font-mono mt-3">
               👈 Drag slider left and right to inspect transformation details 👉
             </p>
-          </div>
+          </FadeIn>
 
         </div>
 

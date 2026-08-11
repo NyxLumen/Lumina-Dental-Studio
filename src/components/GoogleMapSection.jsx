@@ -1,9 +1,9 @@
 import React from 'react';
 import { MAP_DETAILS, CLINIC_INFO } from '../data/practiceData';
 import { MapPin, Navigation, Car, Compass, ExternalLink } from 'lucide-react';
+import { FadeIn, MotionCard } from './MotionUi';
 
 export default function GoogleMapSection({ theme }) {
-  // Encoded location string for Google Maps Embed
   const encodedAddress = encodeURIComponent(CLINIC_INFO.fullAddress);
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
   const embedIframeSrc = `https://maps.google.com/maps?q=Indirapuram%20Ghaziabad%20Uttar%20Pradesh&t=&z=14&ie=UTF8&iwloc=&output=embed`;
@@ -13,8 +13,8 @@ export default function GoogleMapSection({ theme }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <span className={`inline-block px-3 py-1 ${theme.radius} ${theme.accentBadge} text-xs font-mono uppercase tracking-widest`}>
+        <FadeIn className="text-center max-w-3xl mx-auto space-y-4 mb-12">
+          <span className={`inline-block px-3.5 py-1 ${theme.radius} ${theme.accentBadge} text-xs font-serif italic`}>
             Location & Access
           </span>
           <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold ${theme.headingFont} ${theme.bodyText}`}>
@@ -23,14 +23,13 @@ export default function GoogleMapSection({ theme }) {
           <p className="text-base opacity-80 leading-relaxed">
             Conveniently located in Indirapuram, Ghaziabad — opposite Habitat Centre with direct access from Noida and Delhi.
           </p>
-        </div>
+        </FadeIn>
 
-        <div className={`grid lg:grid-cols-12 gap-8 ${theme.radius} ${theme.cardBg} border p-4 sm:p-6 shadow-xl`}>
+        <FadeIn delay={0.2} className="grid lg:grid-cols-12 gap-8 rounded-2xl bg-white border border-[#E5DFD3] p-4 sm:p-6 shadow-xl">
           
           {/* Left: Google Map View Container */}
-          <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[440px] rounded-xl overflow-hidden border border-slate-500/20 group">
+          <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[440px] rounded-xl overflow-hidden border border-[#E5DFD3] group">
             
-            {/* Embedded Google Map iframe */}
             <iframe
               title="Lumina Dental Studio Indirapuram Location Map"
               src={embedIframeSrc}
@@ -40,10 +39,10 @@ export default function GoogleMapSection({ theme }) {
             />
 
             {/* Map Overlay Badge */}
-            <div className="absolute top-4 left-4 p-3 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/20 text-white shadow-2xl space-y-1 z-10">
+            <div className="absolute top-4 left-4 p-3.5 rounded-xl bg-[#211E1B]/90 backdrop-blur-md border border-white/20 text-white shadow-2xl space-y-1 z-10">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4 text-rose-500" />
-                <span className="font-bold text-sm">Lumina Dental Studio</span>
+                <span className="font-bold text-sm font-serif">Lumina Dental Studio</span>
               </div>
               <p className="text-xs text-slate-300">Sector 14, Indirapuram, Ghaziabad</p>
             </div>
@@ -53,7 +52,7 @@ export default function GoogleMapSection({ theme }) {
               href={mapsUrl}
               target="_blank"
               rel="noreferrer"
-              className="absolute bottom-4 right-4 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center space-x-2 shadow-lg transition-all z-10"
+              className="absolute bottom-4 right-4 px-4 py-2.5 rounded-xl bg-[#8C7A5B] hover:bg-[#726348] text-white text-xs font-bold font-serif flex items-center space-x-2 shadow-lg transition-all z-10"
             >
               <Navigation className="w-3.5 h-3.5" />
               <span>Open in Google Maps</span>
@@ -66,7 +65,7 @@ export default function GoogleMapSection({ theme }) {
           <div className="lg:col-span-5 space-y-6 text-left p-2 flex flex-col justify-between">
             
             <div>
-              <div className="flex items-center space-x-2 text-xs font-mono uppercase tracking-wider text-rose-500 font-bold mb-2">
+              <div className="flex items-center space-x-2 text-xs font-serif italic text-rose-700 font-bold mb-2">
                 <Compass className="w-4 h-4" />
                 <span>Estimated Driving Times</span>
               </div>
@@ -77,36 +76,36 @@ export default function GoogleMapSection({ theme }) {
               {/* Directions items */}
               <div className="space-y-3">
                 {MAP_DETAILS.directions.map((dir, idx) => (
-                  <div
+                  <MotionCard
                     key={idx}
-                    className={`p-3.5 ${theme.radius} ${theme.cardAltBg} border flex items-start space-x-3`}
+                    className="p-3.5 rounded-xl bg-[#F8F5F0] border border-[#E5DFD3] flex items-start space-x-3"
                   >
-                    <div className="p-2 rounded-lg bg-teal-500/10 text-teal-500 flex-shrink-0 mt-0.5">
+                    <div className="p-2 rounded-lg bg-[#F0E9DC] text-[#7A694B] flex-shrink-0 mt-0.5">
                       <Car className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold opacity-90">{dir.from}</h4>
-                      <p className="text-xs text-emerald-500 font-semibold mt-0.5">{dir.time}</p>
+                      <h4 className="text-xs font-bold text-[#211E1B]">{dir.from}</h4>
+                      <p className="text-xs text-emerald-700 font-semibold mt-0.5">{dir.time}</p>
                     </div>
-                  </div>
+                  </MotionCard>
                 ))}
               </div>
             </div>
 
             {/* Landmarks & Parking summary */}
-            <div className={`p-4 ${theme.radius} bg-slate-500/5 border border-slate-500/10 space-y-2 text-xs`}>
-              <div className="flex items-center space-x-2 font-bold opacity-90">
-                <MapPin className="w-3.5 h-3.5 text-rose-500" />
-                <span>Landmarks & Parking</span>
+            <div className="p-4 rounded-xl bg-[#F0EAE1] border border-[#E0D8C8] space-y-2 text-xs">
+              <div className="flex items-center space-x-2 font-bold font-serif text-[#211E1B]">
+                <MapPin className="w-3.5 h-3.5 text-rose-600" />
+                <span>Landmarks & Valet Parking</span>
               </div>
-              <p className="opacity-80 leading-relaxed">
+              <p className="opacity-80 leading-relaxed text-[#211E1B]">
                 Located opposite Habitat Centre & adjacent to Swarn Jayanti Park entrance. Dedicated free patient parking with valet service at clinic entrance.
               </p>
             </div>
 
           </div>
 
-        </div>
+        </FadeIn>
 
       </div>
     </section>
