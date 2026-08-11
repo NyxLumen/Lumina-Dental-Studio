@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Base body resets */
+/* Base */
 html {
   scroll-behavior: smooth;
 }
@@ -10,7 +10,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar hide utility */
+/* Scrollbar hide */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -19,40 +19,31 @@ body {
   display: none;
 }
 
-/* Smooth transitions on theme change */
+/* Smooth theme transition */
 .theme-transition * {
-  transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
-/* Custom range slider for Before/After */
+/* Range slider handle — invisible but functional */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   cursor: ew-resize;
 }
 input[type="range"]::-moz-range-thumb {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   cursor: ew-resize;
   border: none;
   background: transparent;
 }
 
-/* Animate ping for status indicators */
-@keyframes ping-slow {
-  75%, 100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-/* Subtle float animation */
+/* Float animation */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-6px); }
 }
-
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }

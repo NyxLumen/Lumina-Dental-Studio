@@ -1,110 +1,62 @@
 import React from 'react';
 import { MAP_DETAILS, CLINIC_INFO } from '../data/practiceData';
-import { MapPin, Navigation, Car, Compass, ExternalLink } from 'lucide-react';
-import { FadeIn, MotionCard } from './MotionUi';
+import { MapPin, Navigation, Car, ExternalLink } from 'lucide-react';
+import { FadeIn } from './MotionUi';
 
 export default function GoogleMapSection({ theme }) {
   const encodedAddress = encodeURIComponent(CLINIC_INFO.fullAddress);
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
-  const embedIframeSrc = `https://maps.google.com/maps?q=Indirapuram%20Ghaziabad%20Uttar%20Pradesh&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+  const embedSrc = `https://maps.google.com/maps?q=Indirapuram%20Ghaziabad%20Uttar%20Pradesh&t=&z=14&ie=UTF8&iwloc=&output=embed`;
 
   return (
-    <section className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Title */}
-        <FadeIn className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <span className={`inline-block px-3.5 py-1 ${theme.radius} ${theme.accentBadge} text-xs font-serif italic`}>
-            Location & Access
-          </span>
-          <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold ${theme.headingFont} ${theme.bodyText}`}>
-            Google Maps & Studio Location
-          </h2>
-          <p className="text-base opacity-80 leading-relaxed">
-            Conveniently located in Indirapuram, Ghaziabad — opposite Habitat Centre with direct access from Noida and Delhi.
-          </p>
-        </FadeIn>
+    <section className="relative bg-[#F8F5F0]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
 
-        <FadeIn delay={0.2} className="grid lg:grid-cols-12 gap-8 rounded-2xl bg-white border border-[#E5DFD3] p-4 sm:p-6 shadow-xl">
-          
-          {/* Left: Google Map View Container */}
-          <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[440px] rounded-xl overflow-hidden border border-[#E5DFD3] group">
-            
+        {/* Full-bleed Map with no gap between ClinicDetails */}
+        <FadeIn delay={0.1}>
+          <div className="rounded-xl overflow-hidden border border-[#E6DFD3] shadow-xl relative" style={{ height: '480px' }}>
             <iframe
-              title="Lumina Dental Studio Indirapuram Location Map"
-              src={embedIframeSrc}
-              className="w-full h-full border-0 absolute inset-0 filter contrast-105"
+              title="Lumina Dental Studio Location Map — Indirapuram Ghaziabad"
+              src={embedSrc}
+              className="w-full h-full border-0 filter contrast-105"
               loading="lazy"
               allowFullScreen
             />
 
-            {/* Map Overlay Badge */}
-            <div className="absolute top-4 left-4 p-3.5 rounded-xl bg-[#211E1B]/90 backdrop-blur-md border border-white/20 text-white shadow-2xl space-y-1 z-10">
+            {/* Top-left floating info pill */}
+            <div className="absolute top-4 left-4 px-4 py-3 rounded-lg bg-[#111111]/90 backdrop-blur text-white shadow-xl z-10 space-y-1 text-left">
               <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4 text-rose-500" />
-                <span className="font-bold text-sm font-serif">Lumina Dental Studio</span>
+                <MapPin className="w-3.5 h-3.5 text-rose-400" />
+                <span className="text-xs font-bold font-serif">Lumina Dental Studio</span>
               </div>
-              <p className="text-xs text-slate-300">Sector 14, Indirapuram, Ghaziabad</p>
+              <p className="text-[10px] text-white/60 font-mono">Sector 14, Indirapuram, Ghaziabad</p>
             </div>
 
-            {/* Open Google Maps Button */}
+            {/* Bottom-right Open Maps CTA */}
             <a
               href={mapsUrl}
               target="_blank"
               rel="noreferrer"
-              className="absolute bottom-4 right-4 px-4 py-2.5 rounded-xl bg-[#8C7A5B] hover:bg-[#726348] text-white text-xs font-bold font-serif flex items-center space-x-2 shadow-lg transition-all z-10"
+              className="absolute bottom-4 right-4 px-5 py-3 rounded-lg bg-[#111111] hover:bg-[#2A2A2A] text-white text-xs font-serif font-bold uppercase tracking-wider flex items-center space-x-2 shadow-lg transition-colors z-10"
             >
-              <Navigation className="w-3.5 h-3.5" />
+              <Navigation className="w-3.5 h-3.5 text-amber-200" />
               <span>Open in Google Maps</span>
-              <ExternalLink className="w-3 h-3 opacity-70" />
+              <ExternalLink className="w-3 h-3 opacity-60" />
             </a>
-
           </div>
+        </FadeIn>
 
-          {/* Right: Quick Travel Times & Directions Guide */}
-          <div className="lg:col-span-5 space-y-6 text-left p-2 flex flex-col justify-between">
-            
-            <div>
-              <div className="flex items-center space-x-2 text-xs font-serif italic text-rose-700 font-bold mb-2">
-                <Compass className="w-4 h-4" />
-                <span>Estimated Driving Times</span>
-              </div>
-              <h3 className={`text-xl sm:text-2xl font-bold ${theme.headingFont} mb-4`}>
-                Easy Access across Delhi NCR
-              </h3>
-
-              {/* Directions items */}
-              <div className="space-y-3">
-                {MAP_DETAILS.directions.map((dir, idx) => (
-                  <MotionCard
-                    key={idx}
-                    className="p-3.5 rounded-xl bg-[#F8F5F0] border border-[#E5DFD3] flex items-start space-x-3"
-                  >
-                    <div className="p-2 rounded-lg bg-[#F0E9DC] text-[#7A694B] flex-shrink-0 mt-0.5">
-                      <Car className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-[#211E1B]">{dir.from}</h4>
-                      <p className="text-xs text-emerald-700 font-semibold mt-0.5">{dir.time}</p>
-                    </div>
-                  </MotionCard>
-                ))}
+        {/* Directions row beneath map — clean unboxed */}
+        <FadeIn delay={0.2} className="mt-8 grid sm:grid-cols-3 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-[#E6DFD3] border border-[#E6DFD3] rounded-xl overflow-hidden bg-white">
+          {MAP_DETAILS.directions.map((dir, idx) => (
+            <div key={idx} className="flex items-center space-x-4 px-8 py-5">
+              <Car className="w-5 h-5 text-[#8C7A5B] flex-shrink-0" />
+              <div>
+                <p className="text-xs font-bold text-[#111111] font-serif">{dir.from}</p>
+                <p className="text-xs font-mono text-emerald-800 font-semibold">{dir.time}</p>
               </div>
             </div>
-
-            {/* Landmarks & Parking summary */}
-            <div className="p-4 rounded-xl bg-[#F0EAE1] border border-[#E0D8C8] space-y-2 text-xs">
-              <div className="flex items-center space-x-2 font-bold font-serif text-[#211E1B]">
-                <MapPin className="w-3.5 h-3.5 text-rose-600" />
-                <span>Landmarks & Valet Parking</span>
-              </div>
-              <p className="opacity-80 leading-relaxed text-[#211E1B]">
-                Located opposite Habitat Centre & adjacent to Swarn Jayanti Park entrance. Dedicated free patient parking with valet service at clinic entrance.
-              </p>
-            </div>
-
-          </div>
-
+          ))}
         </FadeIn>
 
       </div>
