@@ -9,6 +9,7 @@ import SpecialtiesBento from './components/SpecialtiesBento';
 import SmileTransformations from './components/SmileTransformations';
 import TechnologySuite from './components/TechnologySuite';
 import Testimonials from './components/Testimonials';
+import FaqSection from './components/FaqSection';
 import ClinicDetails from './components/ClinicDetails';
 import GoogleMapSection from './components/GoogleMapSection';
 import BookingModal from './components/BookingModal';
@@ -88,6 +89,8 @@ export default function App() {
         </div>
 
         <Testimonials theme={theme} />
+
+        <FaqSection />
 
         <div ref={sectionRefs.location}>
           <ClinicDetails
