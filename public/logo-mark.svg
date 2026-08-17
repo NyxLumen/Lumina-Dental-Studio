@@ -1,5 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
-  <!-- Tooth Mark Icon -->
   <!-- Outer tooth silhouette -->
   <path
     d="M120 28
@@ -21,17 +20,16 @@
        C200 60 196 40 180 34
        C168 30 156 38 152 52
        C148 38 136 28 120 28Z"
-    fill="#111111"
-    opacity="0.92"
+    fill="#151581"
   />
-  <!-- Amber accent highlight — small gem at crown -->
-  <ellipse cx="120" cy="52" rx="6" ry="4" fill="#C9A96E" opacity="0.9"/>
-  <!-- Inner root divider subtle detail -->
+  <!-- Gold crown accent -->
+  <ellipse cx="120" cy="52" rx="6" ry="4" fill="#C9A96E"/>
+  <!-- Inner root divider -->
   <path
     d="M120 158 L120 130"
     stroke="white"
     stroke-width="1.5"
     stroke-linecap="round"
-    opacity="0.25"
+    opacity="0.35"
   />
 </svg>

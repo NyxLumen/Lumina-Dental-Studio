@@ -23,12 +23,12 @@
        C126 30 116 38 112 52
        C108 38 96 28 80 28
        Z"
-    fill="#111111"
+    fill="#151581"
   />
-  <!-- Amber crown accent -->
+  <!-- Gold crown accent -->
   <ellipse cx="78" cy="48" rx="7" ry="5" fill="#C9A96E"/>
   <!-- Subtle root line -->
-  <line x1="78" y1="156" x2="78" y2="130" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.2"/>
+  <line x1="78" y1="156" x2="78" y2="130" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
 
   <!-- === WORDMARK === -->
   <!-- LUMINA — large serif tracking -->
@@ -39,7 +39,7 @@
     font-size="72"
     font-weight="700"
     letter-spacing="10"
-    fill="#111111"
+    fill="#151581"
     text-anchor="start"
   >LUMINA</text>
 
@@ -51,10 +51,10 @@
     font-size="14"
     font-weight="400"
     letter-spacing="8"
-    fill="#8C7A5B"
+    fill="#a1a1cd"
     text-anchor="start"
   >DENTAL  STUDIO</text>
 
   <!-- Hairline separator -->
-  <line x1="192" y1="122" x2="540" y2="122" stroke="#E6DFD3" stroke-width="0.8"/>
+  <line x1="192" y1="122" x2="540" y2="122" stroke="#d6d6d6" stroke-width="0.8"/>
 </svg>
