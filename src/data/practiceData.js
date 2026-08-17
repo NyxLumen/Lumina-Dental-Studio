@@ -1,96 +1,165 @@
 export const CLINIC_INFO = {
   name: 'Lumina Dental Studio',
-  tagline: 'Modern dentistry. Naturally beautiful.',
+  tagline: 'Prescription-Grade Dental Care & AI Aesthetics',
   location: 'Indirapuram, Ghaziabad, Uttar Pradesh',
   fullAddress: 'Plot 42, Sector 14, Opposite Habitat Centre, Indirapuram, Ghaziabad, UP 201014',
   founded: 2018,
-  positioning: 'Premium cosmetic, restorative & preventive dentistry',
+  positioning: 'Prescription cosmetic, restorative & AI digital dentistry',
   phone: '+91 98712 34567',
   whatsapp: '+91 98712 34567',
   email: 'care@luminadental.in',
   hours: 'Mon – Sat: 10:00 AM – 8:00 PM | Sun: By Appointment',
   emergencyLine: '+91 98712 34500 (24/7 Dental Emergency)',
   rating: 4.9,
-  reviewsCount: 480
+  reviewsCount: 520
 };
 
-export const DOCTOR_INFO = {
-  name: 'Dr. Arjun Mehta',
-  credentials: 'BDS, MDS — Prosthodontics',
-  experienceYears: 12,
-  experienceLabel: '12+ Years of Clinical Experience',
-  quote: '“Great dentistry isn\'t about changing who you are. It\'s about helping you smile with confidence.”',
-  bio: 'Dr. Arjun Mehta is a master prosthodontist specializing in minimally invasive aesthetic smile makeovers, full-mouth rehabilitation, and digital implant surgery. Trained at premier global dental institutes, Dr. Mehta fuses art and precision digital technology to deliver long-lasting, painless, and naturally stunning dental restorations.',
-  memberships: ['Indian Dental Association (IDA)', 'International College of Prosthodontists', 'Indian Society of Oral Implantology'],
-  image: '/images/dr_arjun_mehta.png'
-};
+export const DOCTORS = [
+  {
+    id: 'dr-arjun-mehta',
+    name: 'Dr. Arjun Mehta',
+    credentials: 'BDS, MDS — Master Prosthodontist',
+    experienceYears: 14,
+    specialty: 'Smile Architecture & 3D Implants',
+    bio: 'Specializing in ultra-thin porcelain veneers, digital smile simulation, and minimally invasive implant reconstruction.',
+    memberships: ['International College of Prosthodontists', 'Indian Society of Oral Implantology'],
+    image: '/images/dr_arjun_mehta.png'
+  },
+  {
+    id: 'dr-elena-rostova',
+    name: 'Dr. Elena Rostova',
+    credentials: 'DDS, MS — Orthodontics & AI Alignment',
+    experienceYears: 12,
+    specialty: 'Clear Aligner & Facial Symmetry',
+    bio: 'Pioneer in AI-driven invisible aligner planning and bio-compatible facial proportion orthodontics.',
+    memberships: ['World Federation of Orthodontists', 'American Association of Orthodontists'],
+    image: '/images/dr_elena_rostova.png'
+  },
+  {
+    id: 'dr-sophia-chen',
+    name: 'Dr. Sophia Chen',
+    credentials: 'BDS, MDS — Aesthetic Periodontist',
+    experienceYears: 11,
+    specialty: 'Laser Gum Sculpting & Veneers',
+    bio: 'Expert in pain-free laser crown lengthening, biological tissue contouring, and ceramic restoration integration.',
+    memberships: ['Indian Society of Periodontology', 'European Federation of Periodontology'],
+    image: '/images/dr_sophia_chen.png'
+  }
+];
+
+export const DOCTOR_INFO = DOCTORS[0]; // Primary doctor reference
 
 export const STATS = [
-  { value: '12+', label: 'Years Experience', desc: 'Dedicated clinical mastery in prosthodontics & implants' },
-  { value: '5,000+', label: 'Patients Treated', desc: 'Restored natural smiles across Delhi NCR & internationally' },
-  { value: '4.9★', label: 'Patient Rating', desc: 'Over 480 verified 5-star reviews on Google & Practo' },
-  { value: '15+', label: 'Advanced Certifications', desc: 'International fellowships in digital dentistry & implantology' }
+  { value: '14+', label: 'Years Experience', desc: 'Master prosthodontic & aesthetic precision' },
+  { value: '6,200+', label: 'Smiles Restored', desc: 'Natural enamel aesthetics across Delhi NCR & abroad' },
+  { value: '4.9★', label: 'Verified Rating', desc: 'Over 520 verified 5-star clinical reviews' },
+  { value: '100%', label: 'Pain-Free Protocol', desc: 'Computer-guided laser & single-tooth anesthesia' }
 ];
 
 export const SPECIALTIES = [
   {
     id: 'cosmetic',
-    title: 'Cosmetic Dentistry',
-    subtitle: 'Porcelain Veneers & Ultra-Thin Bonding',
-    desc: 'Craft ultra-natural porcelain veneers, composite contouring, and laser whitening designed around your facial proportions.',
+    title: 'Porcelain Veneers & Bonding',
+    subtitle: 'Ultra-thin E-max Enamel Craft',
+    desc: 'Custom-milled 0.2mm porcelain veneers designed to mirror natural tooth opalescence and light reflection.',
     badge: 'Popular',
-    features: ['Ultra-thin porcelain veneers', 'Painless laser teeth whitening', 'Enamel micro-shaping', 'Stain-resistant porcelain']
+    features: ['Minimal tooth reduction', 'Opalescent E-max ceramic', 'Digital shade matching', '15-year aesthetic warranty']
+  },
+  {
+    id: 'aligners',
+    title: 'AI Clear Aligners',
+    subtitle: 'Invisible Orthodontic Precision',
+    desc: '3D optical scan tracking ensuring 40% faster tooth movement without metal brackets or wires.',
+    badge: 'AI Powered',
+    features: ['Sub-millimeter 3D preview', 'Removable & invisible', 'Accelerated tooth movement', 'Virtual AI check-ins']
   },
   {
     id: 'implants',
-    title: 'Dental Implants',
-    subtitle: 'Guided 3D Precision Tooth Replacement',
-    desc: 'Permanent, bone-integrated titanium and ceramic implants placed with sub-millimeter computer guidance for lifetime stability.',
+    title: '3D Guided Implants',
+    subtitle: 'Keyhole Permanent Tooth Replacement',
+    desc: 'Computer-guided titanium & zirconia implant placement with zero incisions and lifetime osseointegration.',
     badge: 'Precision',
-    features: ['Single & multi-tooth implants', 'Same-day implant loading', 'Computer-guided keyhole surgery', 'Lifetime warranty crowns']
+    features: ['Keyhole surgical guide', 'Same-day temporary crown', 'Zirconia biomimetic post', 'Lifetime warranty']
   },
   {
-    id: 'smile-makeover',
-    title: 'Smile Makeovers',
-    subtitle: 'Comprehensive Aesthetic Transformation',
-    desc: 'Custom digital smile design preview letting you see your new smile in 3D before treatment even begins.',
-    badge: 'Flagship',
-    features: ['3D digital smile simulation', 'Facial proportion harmony', 'Minimal tooth reduction', 'Trial smile try-in phase']
+    id: 'laser-whitening',
+    title: 'Laser Teeth Whitening',
+    subtitle: 'Clinical Enamel Brightening',
+    desc: 'Gentle cold-laser photo-bleaching achieving up to 8 shades whiter without sensitivity or enamel degradation.',
+    badge: 'Instant',
+    features: ['Zero sensitivity formula', '45-minute single visit', 'Long-lasting stain barrier', 'Natural shade calibration']
   },
   {
     id: 'full-mouth',
-    title: 'Full-Mouth Rehabilitation',
-    subtitle: 'Complex Occlusal & Bite Reconstruction',
-    desc: 'Reconstruct severe tooth wear, collapsed bite vertical dimension, and missing teeth with harmonious jaw alignment.',
-    badge: 'Advanced',
-    features: ['Bite height restoration', 'TMJ pain mitigation', 'All-on-4 / All-on-6 bridges', 'Neuromuscular bite balance']
+    title: 'Smile Architecture Makeover',
+    subtitle: 'Comprehensive Occlusal Balance',
+    desc: 'Full-mouth rehabilitation harmonizing facial proportions, bite vertical dimension, and jaw joint health.',
+    badge: 'Flagship',
+    features: ['3D facial proportion scan', 'Live trial smile try-in', 'Neuromuscular TMJ balance', 'Complete smile restoration']
+  }
+];
+
+export const TRANSFORMATIONS = [
+  {
+    id: 1,
+    title: 'Cosmetic Porcelain Veneers',
+    category: 'Veneers',
+    patient: 'Ananya M., 28',
+    details: '10 Upper E-max Porcelain Veneers to correct enamel wear, micro-fractures, and color asymmetry.',
+    shadeBefore: 'A3 (Warm Yellow)',
+    shadeAfter: 'BL1 (Hollywood Porcelain)',
+    duration: '2 Visits / 7 Days',
+    beforeImage: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=800',
+    afterImage: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=800'
   },
   {
-    id: 'digital',
-    title: 'Digital Dentistry',
-    subtitle: 'Zero Impression 3D Intraoral Scanning',
-    desc: 'Say goodbye to messy impression pastes. Experience instant 3D optical scans with 20-micron accuracy.',
-    badge: 'High-Tech',
-    features: ['3D intraoral optical scanner', 'CAD/CAM same-day crowns', 'Low-dose 3D CBCT imaging', 'Virtual treatment simulation']
+    id: 2,
+    title: 'AI Clear Aligner & Whitening',
+    category: 'Invisalign',
+    patient: 'Rahul S., 34',
+    details: '9-month invisible aligner sequence to correct lower crowding & upper midline gap, finished with laser whitening.',
+    shadeBefore: 'A2 (Natural Enamel)',
+    shadeAfter: 'A1 (Bright Aesthetic)',
+    duration: '9 Months',
+    beforeImage: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=800',
+    afterImage: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    id: 3,
+    title: 'Guided Zirconia Implant & Crown',
+    category: 'Implants',
+    patient: 'Vikram R., 42',
+    details: 'Single keyhole implant replacing missing upper central incisor with biomimetic ceramic translucency.',
+    shadeBefore: 'Missing Incisor',
+    shadeAfter: 'A1 Custom Match',
+    duration: 'Single Visit Placement',
+    beforeImage: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=800',
+    afterImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800'
   }
+];
+
+export const SHADE_PRESETS = [
+  { id: 'BL1', name: 'BL1 Hollywood White', hex: '#FFFFFF', tone: 'Ultra-bright ceramic translucency for camera-ready aesthetics.' },
+  { id: 'A1', name: 'A1 Natural Aesthetic', hex: '#F7F6F0', tone: 'Refined natural enamel shade with soft youthful luminescence.' },
+  { id: 'A2', name: 'A2 Warm Enamel', hex: '#F0EEE4', tone: 'Warm natural shade harmonious with mature complexion tones.' }
 ];
 
 export const TECHNOLOGY = [
   {
-    title: '3D Intraoral Scanners',
-    desc: 'Replaces uncomfortable trays with instant, painless HD 3D digital impressions in seconds.',
+    title: '3D Intraoral Optical Scanning',
+    desc: 'High-speed optical camera captures 100,000 3D data points per second with zero impression paste.',
     icon: 'Scan',
     image: '/images/dental_3d_scanner.png'
   },
   {
-    title: 'Computer-Guided Anesthesia',
-    desc: 'Single-tooth anesthesia delivery ensuring completely painless numbing without facial numbness.',
+    title: 'Computer-Guided Laser Surgery',
+    desc: 'Sub-millimeter laser precision for pain-free gum reshaping and instant tissue healing.',
     icon: 'ShieldCheck',
     image: '/images/clinic_lounge.png'
   },
   {
-    title: '7-Step Hospital Sterilization',
-    desc: 'Class-B Autoclaves & ultrasonic cleaners adhering to strict European EN13060 hygiene standards.',
+    title: 'Class-B European Sterilization',
+    desc: 'Medical-grade autoclave sterilization matching strict European EN13060 clinical safety standards.',
     icon: 'Sparkles',
     image: '/images/hero_clinic.png'
   }
@@ -98,24 +167,30 @@ export const TECHNOLOGY = [
 
 export const TESTIMONIALS = [
   {
+    id: 1,
     name: 'Ananya Sharma',
     location: 'Indirapuram, Ghaziabad',
     procedure: 'Porcelain Smile Makeover',
     rating: 5,
-    text: 'Dr. Arjun Mehta completely transformed my confidence! The 3D Digital Smile preview allowed me to see the exact outcome before starting. The clinic feels like a 5-star spa, and treatment was completely painless.'
+    verified: true,
+    text: 'Dr. Arjun Mehta and the team completely transformed my confidence! The 3D Digital Smile preview allowed me to see the exact outcome before starting. The clinic feels like a 5-star spa, and treatment was completely painless.'
   },
   {
+    id: 2,
     name: 'Vikramaditya Roy',
     location: 'Noida Sector 62',
     procedure: 'Guided Dental Implant',
     rating: 5,
+    verified: true,
     text: 'I was terrified of dental implants until I visited Lumina. Dr. Mehta placed my implant using keyhole digital guidance. I didn’t even need pain medication the next day. Truly world-class dentistry in Indirapuram.'
   },
   {
+    id: 3,
     name: 'Meera Kapoor',
     location: 'Vaishali, Ghaziabad',
-    procedure: 'Cosmetic Veneers & Whitening',
+    procedure: 'AI Clear Aligners',
     rating: 5,
+    verified: true,
     text: 'Lumina Dental Studio is easily the most beautiful and clean clinic in Ghaziabad. Honest recommendations, transparent pricing, and remarkable aesthetic craft. My smile looks 100% natural.'
   }
 ];
