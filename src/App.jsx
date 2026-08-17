@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { LOCKED_THEME as theme } from './data/themes';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import FeatureCopy from './components/FeatureCopy';
 import Stats from './components/Stats';
 import DoctorProfile from './components/DoctorProfile';
 import SpecialtiesBento from './components/SpecialtiesBento';
@@ -54,6 +55,8 @@ export default function App() {
           theme={theme}
           onOpenBooking={handleOpenBooking}
         />
+
+        <FeatureCopy />
 
         <Stats theme={theme} />
 
