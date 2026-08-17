@@ -1,76 +1,89 @@
 import React from 'react';
 import { CLINIC_INFO } from '../data/practiceData';
-import { MapPin, Phone, Mail, Clock, Heart } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Heart, ShieldAlert } from 'lucide-react';
 
 export default function Footer({ theme }) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#111111] text-white">
-
-      {/* Emergency strip */}
-      <div className="bg-red-700 py-3">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-center gap-4 text-xs font-mono tracking-wider">
-          <span className="opacity-80 uppercase">24/7 Dental Emergency</span>
-          <a href={`tel:${CLINIC_INFO.emergencyLine}`} className="font-bold underline hover:text-red-200 transition-colors">
+    <footer className="bg-[#151581] text-white select-none">
+      
+      {/* 24/7 Emergency Strip */}
+      <div className="bg-[#00bb76] py-2.5 text-white">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between text-xs font-body font-medium">
+          <div className="flex items-center space-x-2">
+            <ShieldAlert className="w-4 h-4" />
+            <span>24/7 Clinical Emergency Line — Priority Dental Response</span>
+          </div>
+          <a
+            href={`tel:${CLINIC_INFO.emergencyLine}`}
+            className="font-mono font-bold hover:underline"
+          >
             {CLINIC_INFO.emergencyLine}
           </a>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid md:grid-cols-12 gap-16">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-16">
+        <div className="grid md:grid-cols-12 gap-12">
 
-          {/* Brand + ethos */}
-          <div className="md:col-span-5 space-y-5">
+          {/* Brand Ethos */}
+          <div className="md:col-span-5 space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center p-1.5">
-                <img src="/favicon.svg" alt="Lumina Dental Studio" className="w-full h-full" />
+              <div className="w-10 h-10 rounded-full bg-white text-[#151581] font-display font-bold text-xl flex items-center justify-center">
+                L
               </div>
-              <span className="text-2xl font-bold font-serif tracking-tight">
-                LUMINA <span className="text-[#8C7A5B]">DENTAL</span>
-              </span>
+              <div>
+                <span className="text-xl font-display font-semibold tracking-tight text-white">
+                  Lumina <span className="text-[#a1a1cd]">Dental</span>
+                </span>
+                <p className="text-[10px] font-body text-[#a1a1cd] uppercase tracking-wider">
+                  Prescription Aesthetics &bull; Indirapuram
+                </p>
+              </div>
             </div>
-            <p className="text-sm text-white/60 leading-relaxed max-w-xs">
-              {CLINIC_INFO.positioning}. Serving Indirapuram, Noida, Greater Noida, Delhi & Ghaziabad since {CLINIC_INFO.founded}.
+
+            <p className="text-xs text-[#a1a1cd] font-body leading-relaxed max-w-sm">
+              {CLINIC_INFO.positioning}. Serving Indirapuram, Noida, Greater Noida, Delhi NCR &amp; international patients since {CLINIC_INFO.founded}.
             </p>
-            <div className="flex items-center space-x-2 text-xs font-mono text-amber-200">
-              <span className="font-bold">{CLINIC_INFO.rating}★</span>
-              <span className="opacity-50">·</span>
-              <span className="opacity-70">{CLINIC_INFO.reviewsCount}+ Google Reviews</span>
+
+            <div className="flex items-center space-x-2 text-xs font-body text-[#00bb76] font-medium pt-1">
+              <span>{CLINIC_INFO.rating}★ Rating</span>
+              <span>&bull;</span>
+              <span>{CLINIC_INFO.reviewsCount}+ Verified Patient Reviews</span>
             </div>
           </div>
 
-          {/* Nav links */}
-          <div className="md:col-span-3 space-y-4">
-            <p className="text-xs font-mono uppercase tracking-widest text-white/40">Treatments</p>
-            <ul className="space-y-2 text-sm text-white/70">
-              {['Cosmetic Dentistry', 'Dental Implants', 'Smile Makeovers', 'Full-Mouth Rehab', 'Digital Dentistry'].map(t => (
+          {/* Treatments Links */}
+          <div className="md:col-span-3 space-y-3">
+            <p className="text-xs font-body uppercase tracking-wider text-[#a1a1cd] font-semibold">Specialty Services</p>
+            <ul className="space-y-2 text-xs font-body text-white/80">
+              {['Porcelain Veneers & Bonding', 'AI Clear Aligners', '3D Guided Dental Implants', 'Laser Teeth Whitening', 'Full Smile Architecture'].map(t => (
                 <li key={t}>
-                  <a href="#specialties" className="hover:text-white transition-colors font-serif">{t}</a>
+                  <a href="#specialties" className="hover:text-[#5465ff] transition-colors">{t}</a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
-          <div className="md:col-span-4 space-y-4">
-            <p className="text-xs font-mono uppercase tracking-widest text-white/40">Contact</p>
-            <ul className="space-y-3 text-sm text-white/70">
-              <li className="flex items-start space-x-3">
-                <MapPin className="w-4 h-4 text-rose-400 flex-shrink-0 mt-0.5" />
+          {/* Contact Information */}
+          <div className="md:col-span-4 space-y-3">
+            <p className="text-xs font-body uppercase tracking-wider text-[#a1a1cd] font-semibold">Studio Information</p>
+            <ul className="space-y-2.5 text-xs font-body text-white/80">
+              <li className="flex items-start space-x-2">
+                <MapPin className="w-4 h-4 text-[#a1a1cd] shrink-0 mt-0.5" />
                 <span>{CLINIC_INFO.fullAddress}</span>
               </li>
-              <li className="flex items-center space-x-3">
-                <Clock className="w-4 h-4 text-[#8C7A5B] flex-shrink-0" />
+              <li className="flex items-center space-x-2">
+                <Clock className="w-4 h-4 text-[#a1a1cd] shrink-0" />
                 <span>{CLINIC_INFO.hours}</span>
               </li>
-              <li className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+              <li className="flex items-center space-x-2">
+                <Phone className="w-4 h-4 text-[#00bb76] shrink-0" />
                 <a href={`tel:${CLINIC_INFO.phone}`} className="hover:text-white transition-colors">{CLINIC_INFO.phone}</a>
               </li>
-              <li className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-blue-400 flex-shrink-0" />
+              <li className="flex items-center space-x-2">
+                <Mail className="w-4 h-4 text-[#5465ff] shrink-0" />
                 <a href={`mailto:${CLINIC_INFO.email}`} className="hover:text-white transition-colors">{CLINIC_INFO.email}</a>
               </li>
             </ul>
@@ -78,12 +91,12 @@ export default function Footer({ theme }) {
 
         </div>
 
-        {/* Footer bar */}
-        <div className="mt-20 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-white/40">
-          <p>© {year} {CLINIC_INFO.name}. Est. {CLINIC_INFO.founded}, Indirapuram, Ghaziabad.</p>
+        {/* Footer Bar */}
+        <div className="mt-14 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs font-body text-[#a1a1cd]">
+          <p>© {year} {CLINIC_INFO.name}. All rights reserved.</p>
           <div className="flex items-center space-x-1">
-            <span>Crafted for naturally beautiful smiles</span>
-            <Heart className="w-3 h-3 text-rose-500 fill-rose-500 ml-1" />
+            <span>Prescription-Grade Dental Aesthetics</span>
+            <Heart className="w-3 h-3 text-[#5465ff] fill-[#5465ff] ml-1" />
           </div>
         </div>
       </div>

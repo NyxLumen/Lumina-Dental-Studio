@@ -12,6 +12,7 @@ import Testimonials from './components/Testimonials';
 import ClinicDetails from './components/ClinicDetails';
 import GoogleMapSection from './components/GoogleMapSection';
 import BookingModal from './components/BookingModal';
+import AwardSeal from './components/AwardSeal';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -99,6 +100,8 @@ export default function App() {
       </main>
 
       <Footer theme={theme} />
+
+      <AwardSeal />
 
       {/* Booking Modal Overlay */}
       <BookingModal

@@ -1,123 +1,133 @@
 import React, { useState } from 'react';
 import { SPECIALTIES } from '../data/practiceData';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Sparkles, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FadeIn, MotionButton } from './MotionUi';
 
 export default function SpecialtiesBento({ theme, onSelectSpecialty, onOpenBooking }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = SPECIALTIES[activeIndex];
 
   return (
-    <section id="specialties" className="py-24 relative bg-[#F8F5F0]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Section Label */}
-        <FadeIn className="flex items-center space-x-4 mb-16">
-          <div className="w-8 h-px bg-[#8C7A5B]" />
-          <span className="text-xs font-mono uppercase tracking-widest text-[#8C7A5B]">
-            Clinical Specialties
-          </span>
-        </FadeIn>
-
-        {/* Architectural headline — no subhead eyebrow box */}
-        <FadeIn delay={0.1} className="mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-serif text-[#111111] leading-tight max-w-2xl">
-            Advanced Care for Every Smile Need
+    <section id="specialties" className="py-16 sm:py-24 bg-[#f6f6fa]">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
+          <div className="inline-flex items-center space-x-1.5 text-xs font-body font-medium text-[#5465ff] uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Clinical Specialties</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-display font-normal text-[#151581] tracking-[-0.03em]">
+            Precision dentistry &amp; aesthetic architecture
           </h2>
-        </FadeIn>
+          <p className="text-sm sm:text-base text-[#a1a1cd] font-body">
+            Select a specialty below to inspect our prescription treatments, materials, and clinical protocols.
+          </p>
+        </div>
 
-        {/* Indexed Specialty List + Live Detail Panel */}
-        <div className="grid lg:grid-cols-12 gap-0 border border-[#E6DFD3] rounded-xl overflow-hidden">
-
-          {/* Left: Numbered Index List */}
-          <div className="lg:col-span-5 divide-y divide-[#E6DFD3] bg-white">
+        {/* 40px Radius White Container */}
+        <div className="bg-white rounded-[40px] shadow-dual overflow-hidden border border-[#d6d6d6]/50 grid lg:grid-cols-12">
+          
+          {/* Left: Numbered Specialty Selector List */}
+          <div className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-[#d6d6d6]/60 divide-y divide-[#d6d6d6]/40 bg-[#f6f5f4]">
             {SPECIALTIES.map((spec, idx) => {
               const isActive = activeIndex === idx;
               return (
-                <motion.button
+                <button
                   key={spec.id}
                   onClick={() => setActiveIndex(idx)}
-                  whileHover={{ x: 4 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  className={`w-full text-left px-8 py-6 flex items-center justify-between group transition-colors ${
-                    isActive ? 'bg-[#111111] text-white' : 'hover:bg-[#F8F5F0]'
+                  className={`w-full text-left px-7 py-5 flex items-center justify-between transition-all ${
+                    isActive
+                      ? 'bg-[#151581] text-white shadow-xs'
+                      : 'hover:bg-white text-[#151581]'
                   }`}
                 >
-                  <div className="flex items-center space-x-5">
-                    <span className={`text-xs font-mono tabular-nums ${isActive ? 'text-amber-200' : 'text-[#8C7A5B]'}`}>
+                  <div className="flex items-center space-x-4">
+                    <span className={`text-xs font-mono font-bold ${isActive ? 'text-[#a1a1cd]' : 'text-[#a1a1cd]'}`}>
                       0{idx + 1}
                     </span>
                     <div>
-                      <h3 className={`text-base font-bold font-serif ${isActive ? 'text-white' : 'text-[#111111]'}`}>
+                      <h3 className="text-base font-display font-semibold leading-snug">
                         {spec.title}
                       </h3>
-                      <p className={`text-xs mt-0.5 ${isActive ? 'text-white/60' : 'text-[#111111]/60'}`}>
+                      <p className={`text-xs ${isActive ? 'text-[#a1a1cd]' : 'text-[#a1a1cd]'}`}>
                         {spec.subtitle}
                       </p>
                     </div>
                   </div>
-                  <ArrowRight className={`w-4 h-4 flex-shrink-0 transition-all ${isActive ? 'text-amber-200' : 'text-[#E6DFD3] group-hover:text-[#8C7A5B]'}`} />
-                </motion.button>
+                  <ArrowRight className={`w-4 h-4 shrink-0 transition-transform ${isActive ? 'text-white translate-x-1' : 'text-[#d6d6d6]'}`} />
+                </button>
               );
             })}
           </div>
 
-          {/* Right: Detail View — no floating card, direct editorial typography */}
-          <div className="lg:col-span-7 bg-[#F4EFE6] flex flex-col">
+          {/* Right: Active Specialty Detail Panel */}
+          <div className="lg:col-span-7 bg-white p-8 sm:p-12 flex flex-col justify-between">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
-                className="p-10 lg:p-14 space-y-8 flex-1 flex flex-col"
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+                className="space-y-6"
               >
-                <div className="space-y-4 flex-1">
-                  <span className="text-xs font-mono uppercase tracking-widest text-[#8C7A5B]">
-                    {active.badge} Procedure
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-body font-semibold text-[#5465ff] uppercase tracking-wider px-3 py-1 rounded-full bg-[#5465ff]/10">
+                    {active.badge} Protocol
                   </span>
-                  <h3 className="text-3xl sm:text-4xl font-extrabold font-serif text-[#111111] leading-tight">
-                    {active.title}
-                  </h3>
-                  <p className="text-base text-[#111111]/80 leading-relaxed">
-                    {active.desc}
-                  </p>
-
-                  {/* Features — clean bulleted list, no icon cards */}
-                  <div className="pt-4 space-y-2">
-                    <p className="text-xs font-mono uppercase tracking-widest text-[#111111]/50 mb-3">Included In Treatment</p>
-                    <div className="grid sm:grid-cols-2 gap-2">
-                      {active.features.map((f, i) => (
-                        <div key={i} className="flex items-center space-x-2.5 text-sm text-[#111111]/80">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-700 flex-shrink-0" />
-                          <span>{f}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  <span className="text-xs font-body text-[#00bb76] font-medium flex items-center space-x-1">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>European EN13060 Standard</span>
+                  </span>
                 </div>
 
-                {/* Sticky Bottom Bar */}
-                <div className="pt-6 border-t border-[#E0D8C8] flex items-center justify-between gap-4 flex-wrap">
-                  <div>
-                    <p className="text-[10px] font-mono uppercase tracking-widest text-[#111111]/50">Consultation</p>
-                    <p className="text-sm font-serif font-bold text-[#111111]">30-Min 3D Evaluation</p>
+                <div className="space-y-2">
+                  <h3 className="text-3xl font-display font-normal text-[#151581] tracking-tight">
+                    {active.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-[#292824]/90 font-body leading-relaxed">
+                    {active.desc}
+                  </p>
+                </div>
+
+                {/* Treatment Features */}
+                <div className="pt-4 border-t border-[#f6f5f4] space-y-3">
+                  <h4 className="text-xs font-body uppercase tracking-wider text-[#a1a1cd] font-medium">
+                    Clinical Standards Included:
+                  </h4>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {active.features.map((feat, i) => (
+                      <div key={i} className="flex items-center space-x-2 text-xs font-body text-[#151581]">
+                        <CheckCircle2 className="w-4 h-4 text-[#00bb76] shrink-0" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
                   </div>
-                  <MotionButton
-                    onClick={() => { onSelectSpecialty(active.title); onOpenBooking(); }}
-                    className="px-7 py-3.5 rounded-lg bg-[#111111] hover:bg-[#2A2A2A] text-white font-serif text-xs font-bold uppercase tracking-widest flex items-center space-x-2 shadow-md"
-                  >
-                    <span>Book {active.title}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </MotionButton>
                 </div>
               </motion.div>
             </AnimatePresence>
+
+            {/* Bottom Action Row */}
+            <div className="pt-8 mt-6 border-t border-[#d6d6d6]/40 flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p className="text-[11px] font-body text-[#a1a1cd]">Treatment Consultation</p>
+                <p className="text-xs font-body font-semibold text-[#151581]">30-Min 3D Dental Evaluation</p>
+              </div>
+
+              <button
+                onClick={() => { onSelectSpecialty(active.title); onOpenBooking(); }}
+                className="px-6 py-2.5 rounded-full bg-[#151581] hover:bg-[#0f0f63] text-white font-body text-xs font-medium shadow-xs active:scale-[0.98] transition-all flex items-center space-x-2"
+              >
+                <span>Book {active.title}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
           </div>
 
         </div>
+
       </div>
     </section>
   );

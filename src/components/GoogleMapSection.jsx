@@ -1,7 +1,6 @@
 import React from 'react';
 import { MAP_DETAILS, CLINIC_INFO } from '../data/practiceData';
 import { MapPin, Navigation, Car, ExternalLink } from 'lucide-react';
-import { FadeIn } from './MotionUi';
 
 export default function GoogleMapSection({ theme }) {
   const encodedAddress = encodeURIComponent(CLINIC_INFO.fullAddress);
@@ -9,55 +8,55 @@ export default function GoogleMapSection({ theme }) {
   const embedSrc = `https://maps.google.com/maps?q=Indirapuram%20Ghaziabad%20Uttar%20Pradesh&t=&z=14&ie=UTF8&iwloc=&output=embed`;
 
   return (
-    <section className="relative bg-[#F8F5F0]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+    <section className="relative bg-[#f6f6fa] pb-16 sm:pb-24">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
 
-        {/* Full-bleed Map with no gap between ClinicDetails */}
-        <FadeIn delay={0.1}>
-          <div className="rounded-xl overflow-hidden border border-[#E6DFD3] shadow-xl relative" style={{ height: '480px' }}>
-            <iframe
-              title="Lumina Dental Studio Location Map — Indirapuram Ghaziabad"
-              src={embedSrc}
-              className="w-full h-full border-0 filter contrast-105"
-              loading="lazy"
-              allowFullScreen
-            />
+        {/* Map Container */}
+        <div className="rounded-[32px] overflow-hidden border border-[#d6d6d6]/60 shadow-dual relative h-[420px] sm:h-[480px]">
+          <iframe
+            title="Lumina Dental Studio Location Map — Indirapuram Ghaziabad"
+            src={embedSrc}
+            className="w-full h-full border-0 filter contrast-105"
+            loading="lazy"
+            allowFullScreen
+          />
 
-            {/* Top-left floating info pill */}
-            <div className="absolute top-4 left-4 px-4 py-3 rounded-lg bg-[#111111]/90 backdrop-blur text-white shadow-xl z-10 space-y-1 text-left">
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-3.5 h-3.5 text-rose-400" />
-                <span className="text-xs font-bold font-serif">Lumina Dental Studio</span>
-              </div>
-              <p className="text-[10px] text-white/60 font-mono">Sector 14, Indirapuram, Ghaziabad</p>
-            </div>
-
-            {/* Bottom-right Open Maps CTA */}
-            <a
-              href={mapsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="absolute bottom-4 right-4 px-5 py-3 rounded-lg bg-[#111111] hover:bg-[#2A2A2A] text-white text-xs font-serif font-bold uppercase tracking-wider flex items-center space-x-2 shadow-lg transition-colors z-10"
-            >
-              <Navigation className="w-3.5 h-3.5 text-amber-200" />
-              <span>Open in Google Maps</span>
-              <ExternalLink className="w-3 h-3 opacity-60" />
-            </a>
+          {/* Floating Top-Left Tag */}
+          <div className="absolute top-4 left-4 px-4 py-2.5 rounded-full bg-[#151581]/95 backdrop-blur-md text-white shadow-md z-10 flex items-center space-x-2">
+            <MapPin className="w-3.5 h-3.5 text-[#00bb76]" />
+            <span className="text-xs font-display font-semibold">Lumina Dental Studio &bull; Indirapuram</span>
           </div>
-        </FadeIn>
 
-        {/* Directions row beneath map — clean unboxed */}
-        <FadeIn delay={0.2} className="mt-8 grid sm:grid-cols-3 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-[#E6DFD3] border border-[#E6DFD3] rounded-xl overflow-hidden bg-white">
+          {/* Bottom-Right Open Maps Action */}
+          <a
+            href={mapsUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="absolute bottom-4 right-4 px-5 py-2.5 rounded-full bg-[#151581] hover:bg-[#0f0f63] text-white text-xs font-body font-medium flex items-center space-x-2 shadow-md transition-transform active:scale-[0.98] z-10"
+          >
+            <Navigation className="w-3.5 h-3.5 text-[#a1a1cd]" />
+            <span>Open in Google Maps</span>
+            <ExternalLink className="w-3 h-3 text-[#a1a1cd]" />
+          </a>
+        </div>
+
+        {/* Driving Directions Bar */}
+        <div className="mt-6 grid sm:grid-cols-3 gap-3">
           {MAP_DETAILS.directions.map((dir, idx) => (
-            <div key={idx} className="flex items-center space-x-4 px-8 py-5">
-              <Car className="w-5 h-5 text-[#8C7A5B] flex-shrink-0" />
+            <div
+              key={idx}
+              className="bg-white rounded-[20px] p-4 border border-[#d6d6d6]/60 shadow-2xs flex items-center space-x-3 text-left"
+            >
+              <div className="w-8 h-8 rounded-full bg-[#f6f5f4] text-[#151581] flex items-center justify-center shrink-0">
+                <Car className="w-4 h-4" />
+              </div>
               <div>
-                <p className="text-xs font-bold text-[#111111] font-serif">{dir.from}</p>
-                <p className="text-xs font-mono text-emerald-800 font-semibold">{dir.time}</p>
+                <p className="text-xs font-display font-semibold text-[#151581]">{dir.from}</p>
+                <p className="text-[11px] font-body text-[#00bb76] font-medium mt-0.5">{dir.time}</p>
               </div>
             </div>
           ))}
-        </FadeIn>
+        </div>
 
       </div>
     </section>
