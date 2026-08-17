@@ -43,22 +43,25 @@ export default function FeatureCopy() {
 
   return (
     <section ref={containerRef} className="py-16 sm:py-24 bg-[#f6f6fa]">
-      <div className="max-w-[720px] mx-auto px-6 text-left sm:text-center space-y-8">
+      <div className="max-w-[760px] mx-auto px-6 text-left sm:text-center space-y-8 select-none">
         
         {/* Paragraph 1 */}
         <p
           ref={para1Ref}
-          className="text-xl sm:text-2xl font-display font-normal text-[#151581] leading-[1.3] tracking-[-0.02em]"
+          className="text-xl sm:text-2xl lg:text-3xl font-display font-normal text-[#151581] leading-[1.3] tracking-[-0.025em]"
         >
-          At Lumina Dental Studio, we operate as a clinical sanctuary for your smile 🦷. Every restoration is custom-milled to honor your natural enamel opalescence 💎 and facial proportion harmony.
+          At Lumina Dental Studio, we operate as a clinical sanctuary for your smile. Every porcelain restoration is custom-milled to honor your natural enamel opalescence and facial proportion harmony.
         </p>
 
-        {/* Paragraph 2 (Scroll Reveal) */}
+        {/* Hairline Divider */}
+        <div className="w-16 h-0.5 bg-[#5465ff]/30 mx-auto rounded-full" />
+
+        {/* Paragraph 2 */}
         <p
           ref={para2Ref}
-          className="text-xl sm:text-2xl font-display font-normal text-[#151581] opacity-85 leading-[1.3] tracking-[-0.02em]"
+          className="text-xl sm:text-2xl lg:text-3xl font-display font-normal text-[#151581] opacity-85 leading-[1.3] tracking-[-0.025em]"
         >
-          From zero-impression 3D optical scans to computer-guided keyhole implants 🌟, we replace clinical anxiety with prescription-grade precision and pain-free comfort 🌈.
+          From zero-impression 3D optical scans to computer-guided keyhole implants, we replace clinical anxiety with prescription-grade precision and pain-free comfort.
         </p>
 
       </div>
